@@ -8,16 +8,21 @@ func Pow(a, b float32) float32 {
 		isNegative = true
 	}
 
-	isBEven := int(b)%2 == 0
+	for i := float32(0); i < b; {
+		if i == float32(0) {
+			ret = a
+			i++
+			continue
+		}
 
-	for i := float32(0); i < b/2; i++ {
+		if i*2 < b {
+			ret = ret * ret
+			i *= 2
+			continue
+		}
+
 		ret = ret * a
-	}
-
-	if isBEven {
-		ret = ret * ret
-	} else {
-		ret = ret * ret * a * float32(int(b)%2)
+		i++
 	}
 
 	if isNegative {
